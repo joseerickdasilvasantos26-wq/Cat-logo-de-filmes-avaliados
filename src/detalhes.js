@@ -9,7 +9,7 @@ const paginaErro = document.querySelector("#filme-nao-encontrado");
 if (!filme) {
   paginaErro.hidden = false;
 } else {
-  document.title = `${filme.title} | Catálogo de Filmes`;
+  document.title = `${filme.title} | CineAtlas`;
 
   const imagem = document.querySelector("#imagem-filme");
   imagem.src = filme.image;
