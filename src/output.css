@@ -111,6 +111,7 @@
     border-radius: 0;
     background-color: transparent;
     opacity: 1;
+    
   }
   :where(select:is([multiple], [size])) optgroup {
     font-weight: bolder;
