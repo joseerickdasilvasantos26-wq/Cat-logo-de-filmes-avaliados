@@ -13,7 +13,7 @@
     <header class="border-b border-white/10 bg-slate-950/70">
       <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-5 lg:px-8">
         <a href="index.html" class="flex items-center gap-3" aria-label="CineAtlas, início">
-          <img class="size-10 rounded-xl" src="atlas.svg" alt="" aria-hidden="true" />
+          <img class="size-10 rounded-xl" src="Imagens%20Ultilizados/atlas.svg" alt="" aria-hidden="true" />
           <span class="text-lg font-semibold tracking-tight text-white">CineAtlas</span>
         </a>
         <a class="text-sm font-medium text-slate-300 transition hover:text-amber-200" href="index.html#filmes">Todos os filmes</a>
@@ -27,7 +27,7 @@
 
       <article>
         <div class="grid gap-8 lg:grid-cols-[minmax(0,320px)_1fr] lg:gap-12">
-          <img id="imagem-filme" class="mx-auto h-[28rem] w-full max-w-sm rounded-2xl bg-slate-950 object-contain shadow-2xl shadow-black/30 lg:mx-0" alt="" />
+          <img id="imagem-filme" class="mx-auto aspect-[2/3] w-full max-w-sm rounded-2xl bg-slate-950 object-cover object-center shadow-2xl shadow-black/30 lg:mx-0" alt="" />
 
           <div class="self-center">
             <p class="text-xs font-semibold uppercase tracking-[0.22em] text-amber-300" id="genero-filme"></p>
@@ -57,9 +57,9 @@
           <div class="max-w-2xl">
             <p class="text-xs font-semibold uppercase tracking-[0.2em] text-amber-300">O que dizem as notas</p>
             <h2 class="mt-2 text-3xl font-semibold tracking-tight text-white" id="titulo-avaliacoes">Público e crítica</h2>
-            <p class="mt-3 text-sm leading-6 text-slate-400">Percentuais do Rotten Tomatoes. O Tomatometer reúne críticas positivas; no Popcornmeter, contam como positivas as avaliações do público de 3,5 estrelas ou mais.</p>
+            <p class="mt-3 text-sm leading-6 text-slate-400">Percentuais do Rotten Tomatoes. A média é simples entre crítica e público. As faixas de referência são: 90% ou mais, Muito recomendado; de 75% a 89,9%, Recomendado; abaixo de 75%, Mediano. A indicação pode receber ajuste editorial. O total soma as contagens disponíveis; os números do público são aproximados (mil+).</p>
           </div>
-          <div class="mt-6 grid max-w-3xl gap-4 sm:grid-cols-2">
+          <div class="mt-6 grid max-w-5xl gap-4 sm:grid-cols-2 lg:grid-cols-3">
             <div class="rounded-2xl border border-white/10 bg-slate-900/75 p-6">
               <p class="text-sm font-medium text-slate-400">Crítica especializada <span class="text-slate-500">· Tomatometer</span></p>
               <p class="mt-2 text-4xl font-bold tabular-nums text-white" id="nota-critica"></p>
@@ -70,11 +70,23 @@
               <p class="mt-2 text-4xl font-bold tabular-nums text-white" id="nota-publico"></p>
               <p class="mt-1 text-sm text-slate-500" id="quantidade-avaliacoes"></p>
             </div>
+            <div class="rounded-2xl border border-white/10 bg-slate-900/75 p-6">
+              <p class="text-sm font-medium text-slate-400">Média de aprovação</p>
+              <p class="mt-2 text-4xl font-bold tabular-nums text-amber-200" id="media-aprovacao"></p>
+              <p class="mt-1 text-sm text-slate-500" id="total-avaliacoes"></p>
+              <span class="mt-4 inline-flex rounded-full border px-3 py-1 text-xs font-semibold" id="classificacao-filme"></span>
+            </div>
           </div>
           <p class="mt-4 text-xs leading-5 text-slate-500">
             Consulta realizada em 5 de outubro de 2026. As notas podem mudar com novas avaliações.
             <a class="font-medium text-amber-200 underline decoration-amber-200/40 underline-offset-4 hover:text-amber-100" id="fonte-notas" href="#" target="_blank" rel="noopener noreferrer">Ver página do filme no Rotten Tomatoes</a>.
           </p>
+        </section>
+
+        <section class="mt-16 border-t border-white/10 pt-10" aria-labelledby="titulo-resenhas">
+          <p class="text-xs font-semibold uppercase tracking-[0.2em] text-amber-300">Impressões editoriais</p>
+          <h2 class="mt-2 text-3xl font-semibold tracking-tight text-white" id="titulo-resenhas">Resenhas do CineAtlas</h2>
+          <ul id="lista-resenhas" class="mt-6 grid gap-4 md:grid-cols-2" aria-live="polite"></ul>
         </section>
 
         <section class="mt-16 border-t border-white/10 pt-10" aria-labelledby="titulo-elenco">
@@ -98,6 +110,13 @@
         <a class="transition hover:text-amber-200" href="index.html#inicio">Voltar ao início ↑</a>
       </div>
     </footer>
+
+    <template id="template-resenha">
+      <li class="rounded-2xl border border-white/10 bg-slate-900/75 p-6">
+        <h3 class="font-semibold text-white" data-resenha-titulo></h3>
+        <p class="mt-3 text-sm leading-7 text-slate-300" data-resenha-texto></p>
+      </li>
+    </template>
 
     <template id="template-ator">
       <li class="rounded-xl border border-white/10 bg-slate-900/75 p-4">
