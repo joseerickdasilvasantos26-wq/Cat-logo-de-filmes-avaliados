@@ -8,8 +8,7 @@
     <title>Catálogo de Filmes Avaliados</title>
     <link rel="stylesheet" href="output.css" />
     <script type="module" src="script.js"></script>
-  </head
-  >
+  </head>
   <body class="min-h-screen bg-[#0b1120] font-sans text-slate-100 antialiased">
     <header class="border-b border-white/10 bg-slate-950/70">
       <div class="mx-auto flex max-w-6xl flex-col gap-5 px-6 py-5 sm:flex-row sm:items-center sm:justify-between lg:px-8">
@@ -49,11 +48,10 @@
             <p class="text-xs font-semibold uppercase tracking-[0.2em] text-amber-300">A seleção</p>
             <h2 id="titulo-filmes" class="mt-2 text-3xl font-semibold tracking-tight text-white">Filmes avaliados</h2>
           </div>
-          <p class="max-w-md text-sm leading-6 text-slate-400">Notas de 0 a 10, com categoria e resumo para ajudar na escolha.</p>
+          <p class="max-w-md text-sm leading-6 text-slate-400">Notas, cartazes e informações de cada filme para ajudar na escolha.</p>
         </div>
 
         <div id="lista-filmes" class="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3" aria-label="Lista de filmes" aria-live="polite"></div>
-        </div>
       </section>
 
       <section id="criterios" aria-labelledby="titulo-criterios" class="scroll-mt-8 border-y border-white/10 bg-slate-900/45">
@@ -89,5 +87,33 @@
         <a class="transition hover:text-amber-200" href="#inicio">Voltar ao início ↑</a>
       </div>
     </footer>
+
+    <template id="template-filme">
+      <article class="group flex h-full flex-col rounded-2xl border border-white/10 bg-slate-900/75 p-6 shadow-lg shadow-black/10 transition duration-300 hover:-translate-y-1 hover:border-amber-400/40 hover:shadow-xl hover:shadow-black/25">
+        <img class="mb-5 h-64 w-full rounded-xl bg-slate-950 object-contain" data-filme-imagem loading="lazy" decoding="async" alt="" />
+        <div class="mb-5 flex items-start justify-between gap-4">
+          <span class="inline-flex rounded-full border border-amber-300/20 bg-amber-300/10 px-3 py-1 text-xs font-semibold tracking-wide text-amber-200">Filme avaliado</span>
+          <span class="shrink-0 text-sm text-slate-400" data-filme-ano></span>
+        </div>
+        <h3 class="text-xl font-semibold leading-snug tracking-tight text-white" data-filme-titulo></h3>
+        <p class="mt-2 text-sm text-slate-400">Direção: <span data-filme-diretor></span></p>
+        <div class="mt-auto flex items-center justify-between border-t border-white/10 pt-4">
+          <span class="text-xs font-medium uppercase tracking-[0.16em] text-slate-500">Nota</span>
+          <span class="inline-flex items-center gap-2 rounded-lg bg-amber-300/10 px-3 py-1.5 font-bold tabular-nums text-amber-200" data-filme-nota-container>
+            <span aria-hidden="true">★</span> <span data-filme-nota></span><span class="text-xs font-medium text-amber-100/60">/ 10</span>
+          </span>
+        </div>
+        <a class="mt-5 inline-flex items-center justify-center gap-2 rounded-lg border border-amber-300/30 px-4 py-2.5 text-sm font-semibold text-amber-200 transition hover:bg-amber-300 hover:text-slate-950 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300" data-filme-link href="detalhes.html">
+          Ver detalhes <span aria-hidden="true">→</span>
+        </a>
+      </article>
+    </template>
+
+    <template id="template-recomendacao">
+      <p class="text-xs font-semibold uppercase tracking-[0.2em] text-amber-300">Nossa escolha em destaque</p>
+      <h3 class="mt-3 text-2xl font-semibold tracking-tight text-white" data-recomendacao-titulo></h3>
+      <p class="mt-1 text-sm text-slate-400"><span data-recomendacao-ano></span> <span aria-hidden="true">·</span> Direção: <span data-recomendacao-diretor></span></p>
+      <p class="mt-5 inline-flex items-center gap-2 font-semibold text-amber-200"><span aria-hidden="true">★</span> <span data-recomendacao-nota></span> <span class="text-sm font-normal text-slate-400">— a maior nota do catálogo</span></p>
+    </template>
   </body>
 </html>

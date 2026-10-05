@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0b1120" />
+    <meta name="description" content="Sinopse, elenco e avaliações de filmes do catálogo." />
+    <title>Detalhes do filme | Catálogo de Filmes</title>
+    <link rel="stylesheet" href="output.css" />
+    <script type="module" src="detalhes.js"></script>
+  </head>
+  <body class="min-h-screen bg-[#0b1120] font-sans text-slate-100 antialiased">
+    <header class="border-b border-white/10 bg-slate-950/70">
+      <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-5 lg:px-8">
+        <a href="index.html" class="flex items-center gap-3" aria-label="Voltar ao catálogo de filmes">
+          <span class="flex size-10 items-center justify-center rounded-xl bg-amber-300 text-lg font-black text-slate-950" aria-hidden="true">C</span>
+          <span class="text-lg font-semibold tracking-tight text-white">Catálogo de Filmes</span>
+        </a>
+        <a class="text-sm font-medium text-slate-300 transition hover:text-amber-200" href="index.html#filmes">Todos os filmes</a>
+      </div>
+    </header>
+
+    <main id="detalhes-filme" class="mx-auto max-w-6xl px-6 py-10 lg:px-8 lg:py-16" hidden>
+      <a class="mb-8 inline-flex items-center gap-2 text-sm font-medium text-slate-300 transition hover:text-amber-200" href="index.html#filmes">
+        <span aria-hidden="true">←</span> Voltar ao catálogo
+      </a>
+
+      <article>
+        <div class="grid gap-8 lg:grid-cols-[minmax(0,320px)_1fr] lg:gap-12">
+          <img id="imagem-filme" class="mx-auto h-[28rem] w-full max-w-sm rounded-2xl bg-slate-950 object-contain shadow-2xl shadow-black/30 lg:mx-0" alt="" />
+
+          <div class="self-center">
+            <p class="text-xs font-semibold uppercase tracking-[0.22em] text-amber-300" id="genero-filme"></p>
+            <h1 class="mt-3 text-4xl font-semibold leading-tight tracking-tight text-white sm:text-5xl" id="titulo-filme"></h1>
+            <p class="mt-4 text-slate-400">
+              <span id="ano-filme"></span>
+              <span aria-hidden="true"> · </span>
+              <span id="duracao-filme"></span>
+            </p>
+            <p class="mt-2 text-sm text-slate-300">Direção: <span id="diretor-filme"></span></p>
+            <p class="mt-6 max-w-3xl text-base leading-8 text-slate-300" id="sinopse-filme"></p>
+
+            <div class="mt-8 grid max-w-2xl gap-4 sm:grid-cols-2">
+              <section class="rounded-2xl border border-white/10 bg-slate-900/75 p-5" aria-labelledby="rotulo-nota-catalogo">
+                <p class="text-sm text-slate-400" id="rotulo-nota-catalogo">Nota do catálogo</p>
+                <p class="mt-2 text-3xl font-bold tabular-nums text-amber-200"><span id="nota-catalogo"></span><span class="text-base font-medium text-slate-500"> / 10</span></p>
+              </section>
+              <section class="rounded-2xl border border-white/10 bg-slate-900/75 p-5" aria-labelledby="rotulo-genero">
+                <p class="text-sm text-slate-400" id="rotulo-genero">Gênero</p>
+                <p class="mt-2 text-lg font-semibold text-white" id="genero-resumo"></p>
+              </section>
+            </div>
+          </div>
+        </div>
+
+        <section class="mt-16 border-t border-white/10 pt-10" aria-labelledby="titulo-avaliacoes">
+          <div class="max-w-2xl">
+            <p class="text-xs font-semibold uppercase tracking-[0.2em] text-amber-300">O que dizem as notas</p>
+            <h2 class="mt-2 text-3xl font-semibold tracking-tight text-white" id="titulo-avaliacoes">Público e crítica</h2>
+            <p class="mt-3 text-sm leading-6 text-slate-400">Percentuais do Rotten Tomatoes. O Tomatometer reúne críticas positivas; no Popcornmeter, contam como positivas as avaliações do público de 3,5 estrelas ou mais.</p>
+          </div>
+          <div class="mt-6 grid max-w-3xl gap-4 sm:grid-cols-2">
+            <div class="rounded-2xl border border-white/10 bg-slate-900/75 p-6">
+              <p class="text-sm font-medium text-slate-400">Crítica especializada <span class="text-slate-500">· Tomatometer</span></p>
+              <p class="mt-2 text-4xl font-bold tabular-nums text-white" id="nota-critica"></p>
+              <p class="mt-1 text-sm text-slate-500" id="quantidade-criticas"></p>
+            </div>
+            <div class="rounded-2xl border border-white/10 bg-slate-900/75 p-6">
+              <p class="text-sm font-medium text-slate-400">Público <span class="text-slate-500">· Popcornmeter</span></p>
+              <p class="mt-2 text-4xl font-bold tabular-nums text-white" id="nota-publico"></p>
+              <p class="mt-1 text-sm text-slate-500" id="quantidade-avaliacoes"></p>
+            </div>
+          </div>
+          <p class="mt-4 text-xs leading-5 text-slate-500">
+            Consulta realizada em 5 de outubro de 2026. As notas podem mudar com novas avaliações.
+            <a class="font-medium text-amber-200 underline decoration-amber-200/40 underline-offset-4 hover:text-amber-100" id="fonte-notas" href="#" target="_blank" rel="noopener noreferrer">Ver página do filme no Rotten Tomatoes</a>.
+          </p>
+        </section>
+
+        <section class="mt-16 border-t border-white/10 pt-10" aria-labelledby="titulo-elenco">
+          <p class="text-xs font-semibold uppercase tracking-[0.2em] text-amber-300">Quem está no filme</p>
+          <h2 class="mt-2 text-3xl font-semibold tracking-tight text-white" id="titulo-elenco">Elenco principal</h2>
+          <ul id="lista-elenco" class="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3" aria-live="polite"></ul>
+        </section>
+      </article>
+    </main>
+
+    <main id="filme-nao-encontrado" class="mx-auto max-w-3xl px-6 py-24 text-center lg:px-8" hidden>
+      <p class="text-xs font-semibold uppercase tracking-[0.2em] text-amber-300">Catálogo de filmes</p>
+      <h1 class="mt-3 text-3xl font-semibold text-white">Não encontramos esse filme</h1>
+      <p class="mt-3 text-slate-400">Volte ao catálogo para escolher um dos títulos disponíveis.</p>
+      <a class="mt-7 inline-flex rounded-lg bg-amber-300 px-5 py-3 text-sm font-bold text-slate-950 transition hover:bg-amber-200" href="index.html#filmes">Voltar ao catálogo</a>
+    </main>
+
+    <footer class="border-t border-white/10 bg-slate-950/70">
+      <div class="mx-auto flex max-w-6xl flex-col gap-2 px-6 py-6 text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between lg:px-8">
+        <p>Catálogo de Filmes Avaliados <span aria-hidden="true">·</span> informações e avaliações de filmes</p>
+        <a class="transition hover:text-amber-200" href="index.html#inicio">Voltar ao início ↑</a>
+      </div>
+    </footer>
+
+    <template id="template-ator">
+      <li class="rounded-xl border border-white/10 bg-slate-900/75 p-4">
+        <p class="font-semibold text-white" data-ator-nome></p>
+        <p class="mt-1 text-sm text-slate-400" data-ator-personagem></p>
+      </li>
+    </template>
+  </body>
+</html>
