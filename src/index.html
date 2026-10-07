@@ -13,7 +13,7 @@
     <header class="border-b border-white/10 bg-slate-950/70">
       <div class="mx-auto flex max-w-6xl flex-col gap-5 px-6 py-5 sm:flex-row sm:items-center sm:justify-between lg:px-8">
         <a href="#inicio" class="flex items-center gap-3" aria-label="CineAtlas, início">
-          <img class="size-10 rounded-xl" src="atlas.svg" alt="" aria-hidden="true" />
+          <img class="size-10 rounded-xl" src="Imagens%20Ultilizados/atlas.svg" alt="" aria-hidden="true" />
           <span class="text-lg font-semibold tracking-tight text-white">CineAtlas</span>
         </a>
         <nav aria-label="Navegação principal" class="flex flex-wrap gap-x-6 gap-y-2 text-sm text-slate-300">
@@ -48,7 +48,7 @@
             <p class="text-xs font-semibold uppercase tracking-[0.2em] text-amber-300">A seleção</p>
             <h2 id="titulo-filmes" class="mt-2 text-3xl font-semibold tracking-tight text-white">Filmes avaliados</h2>
           </div>
-          <p class="max-w-md text-sm leading-6 text-slate-400">Notas, cartazes e informações de cada filme para ajudar na escolha.</p>
+          <p class="max-w-md text-sm leading-6 text-slate-400">Média simples entre crítica e público. Faixas de referência: 90% ou mais, Muito recomendado; de 75% a 89,9%, Recomendado; abaixo de 75%, Mediano. A indicação pode receber ajuste editorial.</p>
         </div>
 
         <div id="lista-filmes" class="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3" aria-label="Lista de filmes" aria-live="polite"></div>
@@ -90,9 +90,9 @@
 
     <template id="template-filme">
       <article class="group flex h-full flex-col rounded-2xl border border-white/10 bg-slate-900/75 p-6 shadow-lg shadow-black/10 transition duration-300 hover:-translate-y-1 hover:border-amber-400/40 hover:shadow-xl hover:shadow-black/25">
-        <img class="mb-5 h-64 w-full rounded-xl bg-slate-950 object-contain" data-filme-imagem loading="lazy" decoding="async" alt="" />
+        <img class="mb-5 aspect-[2/3] w-full rounded-xl bg-slate-950 object-cover object-center" data-filme-imagem loading="lazy" decoding="async" alt="" />
         <div class="mb-5 flex items-start justify-between gap-4">
-          <span class="inline-flex rounded-full border border-amber-300/20 bg-amber-300/10 px-3 py-1 text-xs font-semibold tracking-wide text-amber-200">Filme avaliado</span>
+          <span class="inline-flex rounded-full border px-3 py-1 text-xs font-semibold tracking-wide" data-filme-classificacao></span>
           <span class="shrink-0 text-sm text-slate-400" data-filme-ano></span>
         </div>
         <h3 class="text-xl font-semibold leading-snug tracking-tight text-white" data-filme-titulo></h3>
@@ -102,6 +102,13 @@
           <span class="inline-flex items-center gap-2 rounded-lg bg-amber-300/10 px-3 py-1.5 font-bold tabular-nums text-amber-200" data-filme-nota-container>
             <span aria-hidden="true">★</span> <span data-filme-nota></span><span class="text-xs font-medium text-amber-100/60">/ 10</span>
           </span>
+        </div>
+        <div class="mt-4 rounded-xl border border-white/10 bg-slate-950/50 p-4">
+          <div class="flex items-center justify-between gap-3 text-sm">
+            <span class="text-slate-400">Média de aprovação</span>
+            <span class="font-semibold tabular-nums text-white" data-filme-media></span>
+          </div>
+          <p class="mt-2 text-xs leading-5 text-slate-500" data-filme-total-avaliacoes></p>
         </div>
         <a class="mt-5 inline-flex items-center justify-center gap-2 rounded-lg border border-amber-300/30 px-4 py-2.5 text-sm font-semibold text-amber-200 transition hover:bg-amber-300 hover:text-slate-950 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300" data-filme-link href="detalhes.html">
           Ver detalhes <span aria-hidden="true">→</span>

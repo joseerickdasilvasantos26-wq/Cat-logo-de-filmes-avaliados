@@ -1,4 +1,9 @@
 import filmes from "./filmes.js";
+import {
+  calcularIndicadores,
+  formatarAprovacao,
+  formatarQuantidadeAvaliacoes,
+} from "./avaliacoes.js";
 
 const listaFilmes = document.querySelector("#lista-filmes");
 const recomendacao = document.querySelector("#recomendacao");
@@ -9,18 +14,28 @@ const templateRecomendacao = document.querySelector("#template-recomendacao");
 const criarCard = (filme) => {
   const card = templateFilme.content.cloneNode(true);
   const nota = filme.rating.toFixed(1);
+  const indicadores = calcularIndicadores(filme);
+  const classificacao = card.querySelector("[data-filme-classificacao]");
 
   card.querySelector("[data-filme-titulo]").textContent = filme.title;
   card.querySelector("[data-filme-ano]").textContent = String(filme.year);
   card.querySelector("[data-filme-diretor]").textContent = filme.director;
   card.querySelector("[data-filme-nota]").textContent = nota;
+  card.querySelector("[data-filme-media]").textContent = formatarAprovacao(
+    indicadores.mediaAprovacao,
+  );
+  card.querySelector("[data-filme-total-avaliacoes]").textContent =
+    formatarQuantidadeAvaliacoes(indicadores.quantidadeAvaliacoes);
+  classificacao.textContent = indicadores.classificacao.nome;
+  classificacao.classList.add(...indicadores.classificacao.classes.split(" "));
+
   const imagem = card.querySelector("[data-filme-imagem]");
   imagem.src = filme.image;
   imagem.alt = `Pôster de ${filme.title}`;
   card.querySelector("[data-filme-link]").href = `detalhes.html?id=${filme.id}`;
   card.querySelector("[data-filme-nota-container]").setAttribute(
     "aria-label",
-    `Nota ${nota} de 10`,
+    `Nota do catálogo ${nota} de 10`,
   );
 
   return card;
