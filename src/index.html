@@ -7,38 +7,57 @@
     <meta name="description" content="Catálogo de filmes avaliados com notas, resumos e recomendação para sua próxima sessão." />
     <title>CineAtlas</title>
     <link rel="stylesheet" href="output.css" />
-    <script type="module" src="script.js"></script>
+    <script src="./script.js" defer></script>
   </head>
   <body class="min-h-screen bg-[#0b1120] font-sans text-slate-100 antialiased">
     <header class="border-b border-white/10 bg-slate-950/70">
       <div class="mx-auto flex max-w-6xl flex-col gap-5 px-6 py-5 sm:flex-row sm:items-center sm:justify-between lg:px-8">
-        <a href="#inicio" class="flex items-center gap-3" aria-label="CineAtlas, início">
+        <a href="#inicio" class="flex items-center gap-3 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300" aria-label="CineAtlas, início">
           <img class="size-10 rounded-xl" src="Imagens%20Ultilizados/atlas.svg" alt="" aria-hidden="true" />
           <span class="text-lg font-semibold tracking-tight text-white">CineAtlas</span>
         </a>
         <nav aria-label="Navegação principal" class="flex flex-wrap gap-x-6 gap-y-2 text-sm text-slate-300">
-          <a class="transition hover:text-amber-200 focus-visible:outline-2 focus-visible:outline-amber-300" href="#inicio">Início</a>
-          <a class="transition hover:text-amber-200 focus-visible:outline-2 focus-visible:outline-amber-300" href="#filmes">Filmes</a>
-          <a class="transition hover:text-amber-200 focus-visible:outline-2 focus-visible:outline-amber-300" href="#criterios">Critérios</a>
-          <a class="transition hover:text-amber-200 focus-visible:outline-2 focus-visible:outline-amber-300" href="#recomendacao">Recomendação</a>
+          <a class="transition hover:text-amber-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300" href="#inicio">Início</a>
+          <a class="transition hover:text-amber-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300" href="#filmes">Filmes</a>
+          <a class="transition hover:text-amber-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300" href="#criterios">Critérios</a>
+          <a class="transition hover:text-amber-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300" href="#recomendacao">Recomendação</a>
         </nav>
       </div>
     </header>
 
     <main id="inicio">
       <section aria-labelledby="titulo-principal" class="relative isolate overflow-hidden border-b border-white/10">
-        <div class="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top_right,_rgba(245,158,11,0.16),_transparent_48%)]"></div>
-        <div class="mx-auto grid max-w-6xl gap-10 px-6 py-16 sm:py-20 lg:grid-cols-[1fr_auto] lg:items-end lg:px-8 lg:py-24">
+        <img
+          class="absolute inset-0 h-full w-full object-cover object-center opacity-40"
+          src="Imagens%20Ultilizados/banner-cinema.jpeg"
+          alt=""
+          aria-hidden="true"
+          fetchpriority="high"
+          decoding="async"
+        />
+        <div class="pointer-events-none absolute inset-0 bg-gradient-to-r from-slate-950/80 via-slate-950/55 to-slate-950/45"></div>
+        <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(245,158,11,0.16),_transparent_48%)]"></div>
+        <div class="relative z-10 mx-auto grid max-w-6xl gap-10 px-6 py-16 sm:py-20 lg:grid-cols-[1fr_auto] lg:items-end lg:px-8 lg:py-24">
           <div class="max-w-3xl">
             <p class="mb-5 text-xs font-semibold uppercase tracking-[0.24em] text-amber-300">Uma seleção para quem ama cinema</p>
-            <h1 id="titulo-principal" class="text-4xl font-semibold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">Boas histórias merecem <span class="text-amber-300">uma segunda olhada.</span></h1>
+            <h1 id="titulo-principal" class="text-4xl font-semibold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">Sua odisseia cinematográfica começa aqui: <span class="text-amber-300">sinta cada história e aventura no CineAtlas!</span></h1>
             <p class="mt-6 max-w-2xl text-base leading-8 text-slate-300 sm:text-lg">Explore seis filmes marcantes, conheça suas histórias e encontre uma boa escolha para sua próxima sessão.</p>
             <a href="#filmes" class="mt-8 inline-flex items-center gap-2 rounded-lg bg-amber-300 px-5 py-3 text-sm font-bold text-slate-950 shadow-lg shadow-amber-950/30 transition hover:bg-amber-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-200">Ver os filmes <span aria-hidden="true">↓</span></a>
           </div>
-          <div class="rounded-2xl border border-white/10 bg-slate-900/80 px-6 py-5 shadow-xl shadow-black/20 lg:min-w-48">
-            <p class="text-sm text-slate-400">Títulos no catálogo</p>
-            <p id="total-filmes" class="mt-1 text-4xl font-semibold tabular-nums text-white">06</p>
-          </div>
+          <section aria-label="Indicadores do catálogo" class="grid gap-3 sm:grid-cols-3 lg:min-w-64 lg:grid-cols-1">
+            <article class="rounded-2xl border border-white/10 bg-slate-900/80 px-5 py-4 shadow-xl shadow-black/20">
+              <h2 class="text-sm font-medium text-slate-400">Filmes no catálogo</h2>
+              <p id="total-filmes" class="mt-1 text-3xl font-semibold tabular-nums text-white">06</p>
+            </article>
+            <article class="rounded-2xl border border-white/10 bg-slate-900/80 px-5 py-4 shadow-xl shadow-black/20">
+              <h2 class="text-sm font-medium text-slate-400">Média geral de aprovação</h2>
+              <p id="media-geral" class="mt-1 text-3xl font-semibold tabular-nums text-amber-200">—</p>
+            </article>
+            <article class="rounded-2xl border border-white/10 bg-slate-900/80 px-5 py-4 shadow-xl shadow-black/20">
+              <h2 class="text-sm font-medium text-slate-400">Classificação final</h2>
+              <p id="classificacao-geral" class="mt-2 inline-flex rounded-full border border-white/10 px-3 py-1 text-sm font-semibold">—</p>
+            </article>
+          </section>
         </div>
       </section>
 
@@ -48,7 +67,7 @@
             <p class="text-xs font-semibold uppercase tracking-[0.2em] text-amber-300">A seleção</p>
             <h2 id="titulo-filmes" class="mt-2 text-3xl font-semibold tracking-tight text-white">Filmes avaliados</h2>
           </div>
-          <p class="max-w-md text-sm leading-6 text-slate-400">Média simples entre crítica e público. Faixas de referência: 90% ou mais, Muito recomendado; de 75% a 89,9%, Recomendado; abaixo de 75%, Mediano. A indicação pode receber ajuste editorial.</p>
+          <p class="max-w-md text-sm leading-6 text-slate-400">Cada filme tem média simples entre crítica e público; a média geral é a média simples dessas médias. Faixas: 90% ou mais, Muito recomendado; de 75% a 89,9%, Recomendado; abaixo de 75%, Mediano. A indicação individual pode receber ajuste editorial.</p>
         </div>
 
         <div id="lista-filmes" class="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3" aria-label="Lista de filmes" aria-live="polite"></div>
@@ -84,7 +103,7 @@
     <footer class="border-t border-white/10 bg-slate-950/70">
       <div class="mx-auto flex max-w-6xl flex-col gap-2 px-6 py-6 text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between lg:px-8">
         <p>Catálogo de Filmes Avaliados <span aria-hidden="true">·</span> uma seleção para sua próxima sessão</p>
-        <a class="transition hover:text-amber-200" href="#inicio">Voltar ao início ↑</a>
+        <a class="transition hover:text-amber-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300" href="#inicio">Voltar ao início ↑</a>
       </div>
     </footer>
 
