@@ -3,17 +3,17 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#0b1120" />
+    <meta name="theme-color" content="#100b09" />
     <meta name="description" content="Catálogo de filmes avaliados com notas, resumos e recomendação para sua próxima sessão." />
     <title>CineAtlas</title>
-    <link rel="stylesheet" href="output.css" />
+    <link rel="stylesheet" href="output.css?v=warm-dark-theme-5" />
     <script type="module" src="./script.js"></script>
   </head>
-  <body class="min-h-screen bg-[#0b1120] font-sans text-slate-100 antialiased">
+  <body class="min-h-screen bg-transparent font-sans text-slate-100 antialiased">
     <header class="border-b border-white/10 bg-slate-950/70">
       <div class="mx-auto flex max-w-6xl flex-col gap-5 px-6 py-5 sm:flex-row sm:items-center sm:justify-between lg:px-8">
         <a href="#inicio" class="flex items-center gap-3 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300" aria-label="CineAtlas, início">
-          <img class="size-10 rounded-xl" src="Imagens%20Ultilizados/atlas.svg" alt="" aria-hidden="true" />
+          <img class="size-10 rounded-xl" src="Imagens%20Ultilizados/atlas-cineatlas.jpeg" alt="" aria-hidden="true" />
           <span class="text-lg font-semibold tracking-tight text-white">CineAtlas</span>
         </a>
         <nav aria-label="Navegação principal" class="flex flex-wrap gap-x-6 gap-y-2 text-sm text-slate-300">
@@ -26,10 +26,10 @@
     </header>
 
     <main id="inicio">
-      <section aria-labelledby="titulo-principal" class="relative isolate overflow-hidden border-b border-white/10">
+      <section aria-labelledby="titulo-principal" class="hero-dark relative isolate overflow-hidden border-b border-white/10">
         <img
           class="absolute inset-0 h-full w-full object-cover object-center opacity-40"
-          src="Imagens%20Ultilizados/banner-cinema.jpeg?v=2"
+          src="Imagens%20Ultilizados/banner-xiao-tong.jpeg?v=1"
           alt=""
           aria-hidden="true"
           fetchpriority="high"
@@ -90,7 +90,7 @@
       </section>
 
       <section aria-labelledby="titulo-recomendacao" class="mx-auto max-w-6xl scroll-mt-8 px-6 py-16 lg:px-8 lg:py-20">
-        <div class="grid gap-8 rounded-2xl border border-amber-300/20 bg-gradient-to-br from-amber-300/10 via-slate-900 to-slate-900 p-7 shadow-xl shadow-black/20 sm:p-10 lg:grid-cols-[auto_1fr] lg:items-center">
+        <div class="warm-panel grid gap-8 rounded-2xl border border-amber-300/20 bg-gradient-to-br from-amber-300/10 via-slate-900 to-slate-900 p-7 shadow-xl shadow-black/20 sm:p-10 lg:grid-cols-[auto_1fr] lg:items-center">
           <div class="hidden size-16 items-center justify-center rounded-2xl border border-amber-300/20 bg-amber-300/10 text-3xl text-amber-200 sm:flex" aria-hidden="true">✦</div>
           <div>
             <h2 id="titulo-recomendacao" class="sr-only">Recomendação</h2>

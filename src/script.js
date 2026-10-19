@@ -6,9 +6,9 @@ const formatoPercentual = new Intl.NumberFormat("pt-BR", {
 });
 
 const estilosClassificacao = {
-  "Muito recomendado": "border-emerald-300/30 bg-emerald-300/10 text-emerald-200",
-  Recomendado: "border-sky-300/30 bg-sky-300/10 text-sky-200",
-  Mediano: "border-slate-300/30 bg-slate-300/10 text-slate-200",
+  "Muito recomendado": "border-emerald-300 bg-emerald-100 text-emerald-800",
+  Recomendado: "border-sky-300 bg-sky-100 text-sky-800",
+  Mediano: "border-stone-300 bg-stone-100 text-stone-700",
 };
 
 function calcularMedia(notas) {
