@@ -1,4 +1,5 @@
 services:
+  # Servidor estático: publica o conteúdo de src na porta 8080 do computador.
   web:
     image: nginx:alpine
     ports:
@@ -6,6 +7,7 @@ services:
     volumes:
       - ./src:/usr/share/nginx/html:ro
 
+  # Processo de desenvolvimento que recompila o CSS ao detectar alterações.
   tailwind:
     restart: unless-stopped
     build:

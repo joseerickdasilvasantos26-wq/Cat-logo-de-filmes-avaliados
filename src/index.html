@@ -6,7 +6,9 @@
     <meta name="theme-color" content="#100b09" />
     <meta name="description" content="Catálogo de filmes avaliados com notas, resumos e recomendação para sua próxima sessão." />
     <title>CineAtlas</title>
+    <!-- O CSS é compilado a partir de input.css e das classes Tailwind do projeto. -->
     <link rel="stylesheet" href="output.css?v=warm-dark-theme-5" />
+    <!-- O módulo identifica a página atual e preenche seus dados. -->
     <script type="module" src="./script.js"></script>
   </head>
   <body class="min-h-screen bg-transparent font-sans text-slate-100 antialiased">
@@ -26,6 +28,7 @@
     </header>
 
     <main id="inicio">
+      <!-- Apresentação do projeto: imagem de fundo, chamada principal e indicadores. -->
       <section aria-labelledby="titulo-principal" class="hero-dark relative isolate overflow-hidden border-b border-white/10">
         <img
           class="absolute inset-0 h-full w-full object-cover object-center opacity-40"
@@ -61,6 +64,7 @@
         </div>
       </section>
 
+      <!-- O JavaScript insere um cartão por filme neste contêiner. -->
       <section id="filmes" aria-labelledby="titulo-filmes" class="mx-auto max-w-6xl scroll-mt-8 px-6 py-16 lg:px-8 lg:py-20">
         <div class="mb-8 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
           <div>
@@ -73,6 +77,7 @@
         <div id="lista-filmes" class="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3" aria-label="Lista de filmes" aria-live="polite"></div>
       </section>
 
+      <!-- Critérios editoriais apresentados ao visitante. -->
       <section id="criterios" aria-labelledby="titulo-criterios" class="scroll-mt-8 border-y border-white/10 bg-slate-900/45">
         <div class="mx-auto max-w-6xl px-6 py-16 lg:px-8">
           <div class="max-w-2xl">
@@ -89,6 +94,7 @@
         </div>
       </section>
 
+      <!-- O destaque é preenchido com o filme de maior nota pelo script.js. -->
       <section aria-labelledby="titulo-recomendacao" class="mx-auto max-w-6xl scroll-mt-8 px-6 py-16 lg:px-8 lg:py-20">
         <div class="warm-panel grid gap-8 rounded-2xl border border-amber-300/20 bg-gradient-to-br from-amber-300/10 via-slate-900 to-slate-900 p-7 shadow-xl shadow-black/20 sm:p-10 lg:grid-cols-[auto_1fr] lg:items-center">
           <div class="hidden size-16 items-center justify-center rounded-2xl border border-amber-300/20 bg-amber-300/10 text-3xl text-amber-200 sm:flex" aria-hidden="true">✦</div>
@@ -107,6 +113,7 @@
       </div>
     </footer>
 
+    <!-- Modelos reutilizáveis: o script clona o conteúdo e preenche os data-*. -->
     <template id="template-filme">
       <article class="group flex h-full flex-col rounded-2xl border border-white/10 bg-slate-900/75 p-6 shadow-lg shadow-black/10 transition duration-300 hover:-translate-y-1 hover:border-amber-400/40 hover:shadow-xl hover:shadow-black/25">
         <img class="mb-5 aspect-[2/3] w-full rounded-xl bg-slate-950 object-cover object-center" data-filme-imagem loading="lazy" decoding="async" alt="" />

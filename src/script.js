@@ -1,10 +1,13 @@
 import filmes from "./filmes.js";
 
+// Os dados dos filmes ficam em um módulo separado; este arquivo cuida dos cálculos
+// e da montagem das duas páginas a partir desses dados.
 const formatoNumero = new Intl.NumberFormat("pt-BR");
 const formatoPercentual = new Intl.NumberFormat("pt-BR", {
   maximumFractionDigits: 1,
 });
 
+// Cada classificação combina um rótulo exibido ao usuário com as classes visuais.
 const estilosClassificacao = {
   "Muito recomendado": "border-emerald-300 bg-emerald-100 text-emerald-800",
   Recomendado: "border-sky-300 bg-sky-100 text-sky-800",
@@ -19,13 +22,16 @@ function calcularMedia(notas) {
   }
 
   if (notas.length === 0) {
+    // Evita divisão por zero quando o filme ainda não tem notas válidas.
     return 0;
   }
 
+  // A média usada pelo catálogo dá o mesmo peso a cada nota disponível.
   return soma / notas.length;
 }
 
 function classificarFilme(mediaAprovacao, ajusteEditorial) {
+  // Um ajuste editorial válido tem prioridade sobre as faixas automáticas.
   if (ajusteEditorial && estilosClassificacao[ajusteEditorial]) {
     return {
       nome: ajusteEditorial,
@@ -50,6 +56,8 @@ function classificarFilme(mediaAprovacao, ajusteEditorial) {
 }
 
 function calcularIndicadores(filme) {
+  // Considera apenas percentuais numéricos para que campos ausentes não
+  // distorçam a média. As quantidades são somadas para formar o total exibido.
   const notas = [filme.criticScore, filme.audienceScore].filter(Number.isFinite);
   const mediaAprovacao = calcularMedia(notas);
   const quantidadeAvaliacoes =
@@ -64,6 +72,7 @@ function calcularIndicadores(filme) {
 }
 
 function formatarAprovacao(mediaAprovacao) {
+  // Intl.NumberFormat aplica vírgula decimal conforme a convenção pt-BR.
   return `${formatoPercentual.format(mediaAprovacao)}%`;
 }
 
@@ -72,6 +81,7 @@ function formatarQuantidadeAvaliacoes(quantidade) {
 }
 
 function criarCard(filme) {
+  // Clona o modelo declarado no HTML e preenche seus campos pelos atributos data-*.
   const templateFilme = document.querySelector("#template-filme");
   const card = templateFilme.content.cloneNode(true);
   const indicadores = calcularIndicadores(filme);
@@ -83,7 +93,7 @@ function criarCard(filme) {
   card.querySelector("[data-filme-diretor]").textContent = filme.director;
   card.querySelector("[data-filme-nota]").textContent = nota;
   card.querySelector("[data-filme-media]").textContent = formatarAprovacao(
-    indicadores.mediaAprovacao,
+    indicadores.mediaAprovacao
   );
   card.querySelector("[data-filme-total-avaliacoes]").textContent =
     formatarQuantidadeAvaliacoes(indicadores.quantidadeAvaliacoes);
@@ -93,6 +103,7 @@ function criarCard(filme) {
   const imagem = card.querySelector("[data-filme-imagem]");
   imagem.src = filme.image;
   imagem.alt = `Pôster de ${filme.title}`;
+  // O ID na URL permite abrir a página de detalhes do filme selecionado.
   card.querySelector("[data-filme-link]").href = `detalhes.html?id=${filme.id}`;
   card.querySelector("[data-filme-nota-container]").setAttribute(
     "aria-label",
@@ -103,6 +114,7 @@ function criarCard(filme) {
 }
 
 function renderizarCatalogo() {
+  // Estes elementos são os pontos de ligação entre a página inicial e os dados.
   const listaFilmes = document.querySelector("#lista-filmes");
   const recomendacao = document.querySelector("#recomendacao");
   const totalFilmes = document.querySelector("#total-filmes");
@@ -114,6 +126,7 @@ function renderizarCatalogo() {
   const temFilmes = filmes.length > 0;
 
   if (temFilmes) {
+    // Primeiro calculamos as médias individuais; a média geral usa essas médias.
     const indicadoresFilmes = filmes.map((filme) => calcularIndicadores(filme));
     const medias = indicadoresFilmes.map((indicadores) => indicadores.mediaAprovacao);
     const mediaGeral = calcularMedia(medias);
@@ -121,6 +134,7 @@ function renderizarCatalogo() {
     const cards = document.createDocumentFragment();
     let filmeRecomendado = filmes[0];
 
+    // O fragmento reúne os cartões antes de inseri-los de uma vez no documento.
     for (const filme of filmes) {
       cards.append(criarCard(filme));
 
@@ -137,6 +151,7 @@ function renderizarCatalogo() {
       ...classificacaoGeral.classes.split(" "),
     );
 
+    // A recomendação em destaque é o filme com a maior nota do catálogo.
     const conteudoRecomendacao = templateRecomendacao.content.cloneNode(true);
     conteudoRecomendacao.querySelector("[data-recomendacao-titulo]").textContent =
       filmeRecomendado.title;
@@ -153,6 +168,7 @@ function renderizarCatalogo() {
     console.log(`Média geral de aprovação: ${formatarAprovacao(mediaGeral)}`);
     console.log(`Classificação final: ${classificacaoGeral.nome}`);
   } else {
+    // Estado vazio: mantém a página compreensível mesmo sem filmes cadastrados.
     listaFilmes.textContent = "Nenhum filme está disponível no catálogo.";
     totalFilmes.textContent = "00";
     mediaGeralElemento.textContent = "—";
@@ -161,6 +177,7 @@ function renderizarCatalogo() {
 }
 
 function renderizarDetalhes(filme) {
+  // Preenche os dados gerais e os indicadores do filme recebido como parâmetro.
   document.title = `${filme.title} | CineAtlas`;
 
   const indicadores = calcularIndicadores(filme);
@@ -197,6 +214,7 @@ function renderizarDetalhes(filme) {
   const listaElenco = document.querySelector("#lista-elenco");
   const elenco = document.createDocumentFragment();
 
+  // O elenco também usa um template HTML, repetido para cada integrante.
   for (const ator of filme.cast) {
     const itemElenco = templateAtor.content.cloneNode(true);
     itemElenco.querySelector("[data-ator-nome]").textContent = ator.name;
@@ -210,6 +228,7 @@ function renderizarDetalhes(filme) {
   const listaResenhas = document.querySelector("#lista-resenhas");
   const resenhas = document.createDocumentFragment();
 
+  // Cada resenha recebe seu próprio item antes de a lista ser atualizada.
   for (const resenha of filme.reviews) {
     const itemResenha = templateResenha.content.cloneNode(true);
     itemResenha.querySelector("[data-resenha-titulo]").textContent = resenha.title;
@@ -224,6 +243,7 @@ function renderizarDetalhes(filme) {
 
 const listaFilmes = document.querySelector("#lista-filmes");
 
+// A página inicial tem a lista de filmes; a página de detalhes usa o ID da URL.
 if (listaFilmes) {
   renderizarCatalogo();
 } else {
@@ -234,6 +254,7 @@ if (listaFilmes) {
   if (filmeEncontrado) {
     renderizarDetalhes(filmeEncontrado);
   } else {
+    // Um ID ausente ou inválido mostra a mensagem de filme não encontrado.
     document.querySelector("#filme-nao-encontrado").hidden = false;
   }
 }

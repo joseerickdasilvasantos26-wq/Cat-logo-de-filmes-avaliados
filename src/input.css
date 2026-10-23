@@ -1,7 +1,9 @@
+/* Importa o Tailwind e procura as classes usadas nos arquivos-fonte da pasta. */
 @import "tailwindcss";
 
 @source "./";
 
+/* Fundo global em camadas para criar o tema escuro com tons quentes. */
 body {
   color: #d8c8b6;
   background:
@@ -11,7 +13,7 @@ body {
   background-attachment: fixed;
 }
 
-/* Superfícies escuras e quentes, com texto suave para reduzir o brilho. */
+/* Ajustes sobre algumas utilitárias Tailwind para unificar as cores do tema. */
 [class~="bg-slate-950/70"] {
   background-color: rgb(16 10 7 / 0.96);
 }
@@ -55,7 +57,7 @@ body {
 [class~="border-amber-300/20"],
 [class~="border-amber-300/30"] { border-color: rgb(221 157 64 / 0.3); }
 
-/* Contraste do destaque sobre a imagem e dos indicadores sobre painéis escuros. */
+/* Reforça a leitura do texto sobre a imagem do banner e nos indicadores. */
 .hero-dark [class~="text-amber-300"],
 .hero-dark [class~="text-amber-200"] { color: #f0c66f; }
 .hero-dark [class~="text-slate-300"],
@@ -66,5 +68,6 @@ body {
 .hero-dark [class~="border-white/10"] { border-color: rgb(230 220 205 / 0.14); }
 
 .warm-panel {
+  /* Painel especial da recomendação em destaque. */
   background: linear-gradient(135deg, #403020, #35271d 58%, #30241a);
 }

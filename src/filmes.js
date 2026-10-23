@@ -1,3 +1,6 @@
+// Fonte local dos dados usados nas páginas. Cada objeto representa um filme;
+// avaliações, elenco e resenhas são mantidos junto ao filme correspondente.
+// recommendationOverride permite ajustar editorialmente o rótulo calculado.
 export default [
     {
 
